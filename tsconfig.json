@@ -1,0 +1,33 @@
+{
+  "compileOnSave": true,
+  "compilerOptions": {
+    "composite": true,
+    "declaration": true,
+    "emitDecoratorMetadata": true,
+    "esModuleInterop": true,
+    "experimentalDecorators": true,
+    "lib": ["dom", "ESNext"],
+    "module": "ESNext",
+    "moduleResolution": "node",
+    "noImplicitAny": false,
+    "noLib": false,
+    "plugins": [
+      {
+        "name": "tslint-language-service"
+      }
+    ],
+    "removeComments": true,
+    "sourceMap": true,
+    "strict": true,
+    "target": "ESNext",
+    "types": ["node"]
+  },
+  "references": [
+    { "path": "./components/awc-base" },
+    { "path": "./components/awc-cookie-notification" },
+    { "path": "./components/awc-icons" },
+    { "path": "./components/awc-sign-in-form" },
+    { "path": "./components/awc-sign-up-form" },
+    { "path": "./components/awc-social-links" }
+  ]
+}
