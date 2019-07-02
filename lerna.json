@@ -6,7 +6,7 @@
       ]
     }
   },
-  "components": [
+  "packages": [
     "components/*"
   ],
   "version": "0.1.0"
