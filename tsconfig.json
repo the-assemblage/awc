@@ -24,6 +24,7 @@
   },
   "references": [
     { "path": "./components/awc-base" },
+    { "path": "./components/awc-carousel" },
     { "path": "./components/awc-cookie-notification" },
     { "path": "./components/awc-icons" },
     { "path": "./components/awc-sign-in-form" },

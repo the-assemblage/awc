@@ -1,0 +1,38 @@
+{
+  "author": {
+    "email": "karl.podger@primeordinal.com",
+    "name": "Karl Podger",
+    "url": "https://www.primeordinal.com"
+  },
+  "bugs": {
+    "url": "https://github.com/assemblage/web-components/issues"
+  },
+  "dependencies": {
+    "@assemblage/awc-base": "0.1.0",
+    "lit-element": "2.2.0",
+    "lit-html": "1.1.0",
+    "lozad": "1.9.0"
+  },
+  "description": "Responsive picture",
+  "devDependencies": {
+    "@types/node": "^12.0.10"
+  },
+  "homepage": "https://github.com/assemblage/web-components/tree/master/components/awc-responsive-picture#readme",
+  "license": "GPL-3.0",
+  "main": "dist/index.js",
+  "name": "@assemblage/awc-responsive-picture",
+  "publishConfig": {
+    "access": "public"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/assemblage/web-components.git"
+  },
+  "scripts": {
+    "build": "tsc",
+    "test": "jest",
+    "test:coverage": "jest --coverage"
+  },
+  "types": "dist/index.d.ts",
+  "version": "0.1.0"
+}
