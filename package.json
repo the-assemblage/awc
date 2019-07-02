@@ -74,7 +74,7 @@
     "compile:watch": "npm run-script compile -- --watch",
     "start": "npm run-script bootstrap && npm run-script link && npm run-script compile:watch",
     "link": "lerna link",
-    "publish": "lerna run tsc && lerna publish",
+    "publish": "lerna run compile && lerna publish",
     "test": "jest"
   },
   "version": "0.1.0"
