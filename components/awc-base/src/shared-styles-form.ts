@@ -23,12 +23,14 @@ export const SharedStylesForm = css`
     width: 100%;
   }
   */
+
   /*
   form:not(.horizontal-labels) label,
   form:not(.show-labels) .radio-item label {
     display: inline-grid;
   }
-*/
+  */
+
   /*
   form:not(.show-labels) label {
     height: 1px;
@@ -224,7 +226,7 @@ export const SharedStylesForm = css`
     }
 
     form.show-labels .form-group {
-      grid-template-columns: 1fr 1fr;
+      grid-template-columns: 2fr 3fr;
       grid-template-areas: "label field" "description feedback";
     }
 
@@ -313,19 +315,23 @@ export const SharedStylesForm = css`
     border-color: #dc143c !important;
   }
 
-  form :optional {
+  form input:optional,
+  form textarea:optional {
     border-style: dashed;
   }
 
-  form :read-only {
+  form input:read-only,
+  form textarea:read-only {
     border-color: #333 !important;
   }
 
-  form :read-write {
+  form input:read-write,
+  form textarea:read-write {
     border-color: #000 !important;
   }
 
-  form :required {
+  form input:required,
+  form textarea:required {
     border-style: solid;
   }
 

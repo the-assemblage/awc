@@ -5,9 +5,11 @@ import { SharedStylesButton } from "./shared-styles-button";
 import { SharedStylesColor } from "./shared-styles-color";
 import { SharedStylesForm } from "./shared-styles-form";
 import { SharedStylesLayout } from "./shared-styles-layout";
+import { SharedStylesModernNormalize } from "./shared-styles-modern-normalize";
 import { SharedStylesText } from "./shared-styles-text";
 
 export const SharedStyles = [
+  SharedStylesModernNormalize,
   SharedStylesButton,
   SharedStylesColor,
   SharedStylesForm,

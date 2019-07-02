@@ -7,28 +7,21 @@ import { SharedStyles } from "@assemblage/awc-base";
 
 @customElement("awc-sign-up-form")
 export class SignUpForn extends LitElement {
-  static styles = [SharedStyles];
+  static get styles() {
+    return [SharedStyles];
+  }
 
   @property({ type: String })
-  private buttonText: string = "Sign up";
-
-  @property({ type: Object })
-  private classes: {
-    "horizontal-labels": boolean;
-    "show-labels": boolean;
-  } = {
-    "horizontal-labels": false,
-    "show-labels": false
-  };
+  buttonText: string = "Sign up";
 
   @property({ type: Boolean })
-  private horizontalLabels: boolean = false;
+  horizontalLabels: boolean = false;
 
   @property({ type: Boolean })
-  private showLabels: boolean = false;
+  showLabels: boolean = false;
 
   @property({ type: Object })
-  private user: {
+  user: {
     authenticated?: boolean;
     email?: string;
     error?: boolean;
@@ -43,8 +36,16 @@ export class SignUpForn extends LitElement {
   @property({ type: Boolean })
   private verbose: boolean = false;
 
+  private _classes: {
+    "horizontal-labels": boolean;
+    "show-labels": boolean;
+  } = {
+    "horizontal-labels": this.horizontalLabels,
+    "show-labels": this.showLabels
+  };
+
   protected firstUpdated() {
-    this.classes = {
+    this._classes = {
       "horizontal-labels": this.horizontalLabels,
       "show-labels": this.showLabels
     };
@@ -53,6 +54,11 @@ export class SignUpForn extends LitElement {
   }
 
   protected render() {
+    this._classes = {
+      "horizontal-labels": this.horizontalLabels,
+      "show-labels": this.showLabels
+    };
+
     if (
       this.user &&
       this.user.event === "sign-up" &&
@@ -66,7 +72,7 @@ export class SignUpForn extends LitElement {
       return html`
         <form
           action="/user"
-          class=${classMap(this.classes)}
+          class=${classMap(this._classes)}
           id="sign-up-form"
           method="post"
         >

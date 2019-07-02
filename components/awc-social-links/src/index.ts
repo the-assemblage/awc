@@ -14,46 +14,48 @@ import {
 
 @customElement("awc-social-links")
 export class SocialLinks extends LitElement {
-  static styles = [
-    SharedStyles,
-    css`
-      :host {
-        background-color: var(--app-primary-banner-background-color);
-        color: var(--app-primary-banner-text-color);
-        display: grid;
-        grid-auto-flow: column;
-        grid-gap: 1.5rem;
-        padding-bottom: 1rem;
-        padding-left: 1.5rem;
-        padding-right: 1.5rem;
-        padding-top: 1rem;
-        place-content: center;
-        place-items: center;
-      }
-
-      @media (min-width: 460px) and (max-width: 1023px) {
+  static get styles() {
+    return [
+      SharedStyles,
+      css`
         :host {
-          grid-gap: 4rem;
+          background-color: var(--app-primary-banner-background-color);
+          color: var(--app-primary-banner-text-color);
+          display: grid;
+          grid-auto-flow: column;
+          grid-gap: 1.5rem;
+          padding-bottom: 1rem;
+          padding-left: 1.5rem;
+          padding-right: 1.5rem;
+          padding-top: 1rem;
+          place-content: center;
+          place-items: center;
         }
-      }
 
-      @media (min-width: 1024px) {
-        :host {
-          grid-gap: 8rem;
+        @media (min-width: 460px) and (max-width: 1023px) {
+          :host {
+            grid-gap: 4rem;
+          }
         }
-      }
 
-      h1 {
-        display: none;
-      }
+        @media (min-width: 1024px) {
+          :host {
+            grid-gap: 8rem;
+          }
+        }
 
-      svg {
-        fill: var(--app-color-secondary);
-        height: 2rem;
-        width: 2rem;
-      }
-    `
-  ];
+        h1 {
+          display: none;
+        }
+
+        svg {
+          fill: var(--app-color-secondary);
+          height: 2rem;
+          width: 2rem;
+        }
+      `
+    ];
+  }
 
   protected render() {
     return html`

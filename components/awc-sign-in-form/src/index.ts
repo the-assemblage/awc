@@ -1,6 +1,6 @@
 import ValidForm from "@pageclip/valid-form";
-import { classMap } from "lit-html/directives/class-map";
 import { customElement, html, LitElement, property } from "lit-element";
+import { classMap } from "lit-html/directives/class-map";
 
 // These are the elements needed by this element.
 import { SharedStyles } from "@assemblage/awc-base";
@@ -8,28 +8,21 @@ import "@material/mwc-icon-button";
 
 @customElement("awc-sign-in-form")
 export class SignInForm extends LitElement {
-  static styles = [SharedStyles];
+  static get styles() {
+    return [SharedStyles];
+  }
 
   @property({ type: String })
-  private buttonText: string = "Sign in";
-
-  @property({ type: Object })
-  private classes: {
-    "horizontal-labels": boolean;
-    "show-labels": boolean;
-  } = {
-    "horizontal-labels": false,
-    "show-labels": false
-  };
+  buttonText: string = "Sign in";
 
   @property({ type: Boolean })
-  private horizontalLabels: boolean = false;
+  horizontalLabels: boolean = false;
 
   @property({ type: Boolean })
-  private showLabels: boolean = false;
+  showLabels: boolean = false;
 
   @property({ type: Object })
-  private user: {
+  user: {
     authenticated?: boolean;
     email?: string;
     error?: boolean;
@@ -42,10 +35,18 @@ export class SignInForm extends LitElement {
   } = {};
 
   @property({ type: Boolean })
-  private verbose: boolean = false;
+  verbose: boolean = false;
+
+  private _classes: {
+    "horizontal-labels": boolean;
+    "show-labels": boolean;
+  } = {
+    "horizontal-labels": this.horizontalLabels,
+    "show-labels": this.showLabels
+  };
 
   protected firstUpdated() {
-    this.classes = {
+    this._classes = {
       "horizontal-labels": this.horizontalLabels,
       "show-labels": this.showLabels
     };
@@ -54,6 +55,11 @@ export class SignInForm extends LitElement {
   }
 
   protected render() {
+    this._classes = {
+      "horizontal-labels": this.horizontalLabels,
+      "show-labels": this.showLabels
+    };
+
     if (
       this.user &&
       this.user.event === "sign-in" &&
@@ -68,7 +74,7 @@ export class SignInForm extends LitElement {
       return html`
         <form
           action="/user"
-          class=${classMap(this.classes)}
+          class=${classMap(this._classes)}
           id="sign-in-form"
           method="post"
         >
