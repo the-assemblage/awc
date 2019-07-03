@@ -2,6 +2,8 @@ import { css, customElement, html, LitElement, property } from "lit-element";
 
 // These are the shared styles needed by this element.
 import { SharedStyles } from "@assemblage/awc-base";
+
+// These are the elements needed by this element.
 import "@material/mwc-icon-button";
 
 @customElement("awc-cookie-notification")
@@ -57,7 +59,7 @@ export class CookieNotification extends LitElement {
   @property({ type: String })
   private buttonText: string = "Close cookie notification";
 
-  private __closeButtonClicked() {
+  private closeButtonClicked() {
     console.log("Close clicked");
 
     const cookiesAcceptedEvent = new CustomEvent("cookies-accepted-event");
@@ -72,7 +74,7 @@ export class CookieNotification extends LitElement {
         <a href="/cookie-policy">Read more here</a>
       </span>
       <mwc-icon-button
-        @click="${this.__closeButtonClicked}"
+        @click="${this.closeButtonClicked}"
         aria-label="${this.buttonText}"
         icon="close"
       ></mwc-icon-button>
