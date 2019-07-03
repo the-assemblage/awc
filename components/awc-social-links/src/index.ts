@@ -1,7 +1,5 @@
-import { css, customElement, html, LitElement } from "lit-element";
+import { css, customElement, html, svg, LitElement } from "lit-element";
 
-// These are the shared styles needed by this element.
-import { SharedStyles } from "@assemblage/awc-base";
 import {
   facebookIcon,
   instagramIcon,
@@ -9,8 +7,10 @@ import {
   snapchatIcon,
   twitterIcon,
   youtubeIcon
-} from "@assemblage/awc-icons";
-// import "@material/mwc-icon-button";
+} from "./icons";
+
+// These are the shared styles needed by this element.
+import { SharedStyles } from "@assemblage/awc-base";
 
 @customElement("awc-social-links")
 export class SocialLinks extends LitElement {
