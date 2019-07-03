@@ -26,7 +26,6 @@ export class ResponsivePicture extends LitElement {
         :host {
           background-color: var(--app-color-tertiary);
           position: relative;
-          width: var(--carousel-width, 100%);
         }
 
         picture,
