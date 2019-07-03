@@ -6,6 +6,10 @@
 
 This monorepo is implemented using [Lerna](https://github.com/lerna/lerna), a tool for managing JavaScript projects with multiple packages.
 
+The packages prefixed with `awc-` are Assemblage Web Components.
+The packages prefixed with `am-` are Assemblage Mixins.
+The packages prefixed with `au-` are Assemblage Utilities.
+
 ## Getting Started
 
 ```sh
