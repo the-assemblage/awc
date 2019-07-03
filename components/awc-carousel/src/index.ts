@@ -35,15 +35,13 @@ export class Carousel extends LitElement {
           place-items: center;
           position: relative;
           scroll-snap-type: x mandatory;
-        }
-
-        figure:not(.cover) {
           width: var(--carousel-width, 80vw);
         }
 
         ::slotted(awc-responsive-picture) {
           height: 100%;
           scroll-snap-align: start;
+          width: var(--carousel-width, 80vw);
           z-index: 1;
         }
 
@@ -90,6 +88,9 @@ export class Carousel extends LitElement {
 
             --button-shadow: rgba(255, 255, 255, 0.25);
             --button-size: 6rem;
+          }
+
+          figure:not(.cover) {
             --carousel-width: 80vw;
           }
         }
@@ -100,9 +101,9 @@ export class Carousel extends LitElement {
   @property({ type: Boolean })
   cover: boolean = false;
 
-  private _leftButtonDisabled: boolean = false;
+  private _previousButtonDisabled: boolean = false;
 
-  private _rightButtonDisabled: boolean = false;
+  private _nextButtonDisabled: boolean = false;
 
   private _classes: {
     cover: boolean;
@@ -140,19 +141,19 @@ export class Carousel extends LitElement {
       </figure>
       <nav>
         <button
-          ?disabled="${this._leftButtonDisabled}"
-          @click="${this._leftButtonClicked}"
+          ?disabled="${this._previousButtonDisabled}"
+          @click="${this._previousButtonClicked}"
           class="icon"
-          title="scroll left"
+          title="scroll to previous item"
           left
         >
           ❬
         </button>
         <button
-          ?disabled="${this._rightButtonDisabled}"
-          @click="${this._rightButtonClicked}"
+          ?disabled="${this._nextButtonDisabled}"
+          @click="${this._nextButtonClicked}"
           class="icon"
-          title="scroll right"
+          title="scroll to next item"
           right
         >
           ❭
@@ -173,41 +174,41 @@ export class Carousel extends LitElement {
         const left = scrolled - width;
 
         if (left <= width * -1) {
-          this._leftButtonDisabled = true;
-          this._rightButtonDisabled = false;
+          this._previousButtonDisabled = true;
+          this._nextButtonDisabled = false;
           return;
         } else {
-          this._leftButtonDisabled = false;
+          this._previousButtonDisabled = false;
         }
 
         if (left >= scrollWidth) {
-          this._leftButtonDisabled = false;
-          this._rightButtonDisabled = true;
+          this._previousButtonDisabled = false;
+          this._nextButtonDisabled = true;
           return;
         } else {
-          this._rightButtonDisabled = false;
+          this._nextButtonDisabled = false;
         }
       });
     }
   }
 
-  private _leftButtonClicked() {
+  private _previousButtonClicked() {
     const figure = this.shadowRoot!.querySelector("figure");
 
     if (figure) {
       const scrolled = figure.scrollLeft;
-      // const scrollWidth = figure.scrollWidth;
+
       const width = figure.getBoundingClientRect().width;
 
       const left = scrolled - width;
 
       if (left <= width * -1) {
-        this._leftButtonDisabled = true;
-        this._rightButtonDisabled = false;
+        this._previousButtonDisabled = true;
+        this._nextButtonDisabled = false;
         return;
       }
 
-      this._leftButtonDisabled = false;
+      this._previousButtonDisabled = false;
 
       figure.scrollTo({
         top: 0,
@@ -219,7 +220,7 @@ export class Carousel extends LitElement {
     }
   }
 
-  private _rightButtonClicked() {
+  private _nextButtonClicked() {
     const figure = this.shadowRoot!.querySelector("figure");
 
     if (figure) {
@@ -230,12 +231,12 @@ export class Carousel extends LitElement {
       const left = scrolled + width;
 
       if (left >= scrollWidth) {
-        this._leftButtonDisabled = false;
-        this._rightButtonDisabled = true;
+        this._previousButtonDisabled = false;
+        this._nextButtonDisabled = true;
         return;
       }
 
-      this._rightButtonDisabled = false;
+      this._nextButtonDisabled = false;
 
       figure.scrollTo({
         top: 0,
