@@ -1,8 +1,5 @@
-import { html, svg } from "lit-html";
+import { svg } from "lit-html";
 
-export const hurr = html`
-  <span>WTF</span>
-`;
 export const favoriteIcon = svg`
   <svg
     xmlns="http://www.w3.org/2000/svg"
