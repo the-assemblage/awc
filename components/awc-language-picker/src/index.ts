@@ -24,8 +24,11 @@ export class LanguagePicker extends LitElement {
   i18nextApp;
 
   @property({ type: Array })
-  private languages: Array<{ text: string; value: string }> = [
-    { text: "Please select", value: "" },
+  private languages: Array<{
+    disabled?: boolean;
+    text: string;
+    value: string;
+  }> = [
     { text: "English", value: "en" },
     { text: "English (British)", value: "en-GB" },
     { text: "English (American)", value: "en-US" },
@@ -50,6 +53,7 @@ export class LanguagePicker extends LitElement {
             this.languages,
             language => html`
               <option
+                ?disabled="${language.disabled}"
                 ?selected="${this.appLanguage === language.value}"
                 value="${language.value}"
                 >${language.text}</option
