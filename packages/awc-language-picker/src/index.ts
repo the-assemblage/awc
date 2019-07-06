@@ -74,7 +74,7 @@ export class LanguagePicker extends LitElement {
         }
 
         localStorage.setItem("language", language);
-        console.info("i18nextApp languageChanged", language);
+        // console.info("i18nextApp languageChanged", language);
       });
     }
   }
