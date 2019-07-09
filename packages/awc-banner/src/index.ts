@@ -29,6 +29,7 @@ export class Banner extends LitElement {
 
         ::slotted(button) {
           background: transparent;
+          color: var(--mdc-theme-text-primary-on-dark, white);
           border: none;
           cursor: pointer;
         }
