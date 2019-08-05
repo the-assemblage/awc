@@ -18,4 +18,8 @@ export const SharedStylesText = css`
   a {
     text-decoration: none;
   }
+
+  dd {
+    margin-inline-start: 0;
+  }
 `;
