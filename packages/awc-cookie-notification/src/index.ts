@@ -54,10 +54,13 @@ export class CookieNotification extends LitElement {
   }
 
   @property({ type: String })
-  private appTitle = "Peaty";
+  public buttonText: string = "Close cookie notification";
 
   @property({ type: String })
-  private buttonText: string = "Close cookie notification";
+  public cta = "Read more";
+
+  @property({ type: String })
+  public information = "Peaty uses cookies";
 
   private closeButtonClicked() {
     console.log("Close clicked");
@@ -70,8 +73,8 @@ export class CookieNotification extends LitElement {
   protected render() {
     return html`
       <span>
-        ${this.appTitle} uses cookies.
-        <a href="/cookie-policy">Read more here</a>
+        ${this.information}
+        <a href="/cookie-policy">${this.cta}</a>
       </span>
       <mwc-icon-button
         @click="${this.closeButtonClicked}"

@@ -58,9 +58,6 @@ export const FooterStyles = css`
 
 @customElement("awc-footer")
 export class Footer extends LitElement {
-  @property({ type: String })
-  appTitle = "";
-
   static get styles() {
     return [
       SharedStyles,

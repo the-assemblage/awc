@@ -6,10 +6,7 @@ import { SharedStyles } from "@assemblage/awc-base";
 @customElement("awc-copyright")
 export class Copyright extends LitElement {
   @property({ type: String })
-  appTitle = "";
-
-  @property({ type: Number })
-  _year = new Date().getFullYear();
+  public text = `© ${new Date().getFullYear()}`;
 
   static get styles() {
     return [
@@ -30,7 +27,7 @@ export class Copyright extends LitElement {
 
   protected render() {
     return html`
-      ${this.appTitle} &copy; ${this._year}
+      ${this.text}
     `;
   }
 }
