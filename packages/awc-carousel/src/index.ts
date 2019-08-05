@@ -5,6 +5,9 @@ import { classMap } from "lit-html/directives/class-map";
 // These are the shared styles needed by this element.
 import { SharedStyles } from "@assemblage/awc-base";
 
+// These are the elements needed by this element.
+import "@material/mwc-icon-button";
+
 @customElement("awc-carousel")
 export class Carousel extends LitElement {
   static get styles() {
@@ -12,11 +15,26 @@ export class Carousel extends LitElement {
       SharedStyles,
       css`
         :host {
-          --button-color: var(--app-secondary-button-background-color);
-          --button-shadow: rgba(0, 0, 0, 0.25);
-          --button-size: 3rem;
+          /*
+          --mdc-icon-size: 3rem;
+          --mdc-ripple-fg-size: 4rem;
+          */
           --carousel-width: 100vw;
+        }
 
+        @media (min-width: 768px) {
+          :host {
+            /*
+            --mdc-icon-size: 6rem;
+            */
+          }
+
+          figure:not(.cover) {
+            --carousel-width: 80vw;
+          }
+        }
+
+        :host {
           grid-auto-rows: 100%;
           place-items: center;
           position: relative;
@@ -38,6 +56,38 @@ export class Carousel extends LitElement {
           width: var(--carousel-width, 80vw);
         }
 
+        nav {
+          align-items: center;
+          display: grid;
+          grid-auto-flow: column;
+          grid-template-areas: "previous center next";
+          grid-template-columns: calc(var(--mdc-icon-size, 2rem) + 1rem) auto calc(
+              var(--mdc-icon-size, 2rem) + 1rem
+            );
+          height: 30%;
+          left: 0;
+          padding: 0 1rem;
+          pointer-events: none;
+          position: absolute;
+          top: 35%;
+          width: 100%;
+          z-index: 2;
+        }
+
+        mwc-icon-button {
+          border: transparent;
+          cursor: pointer;
+          pointer-events: auto;
+        }
+
+        mwc-icon-button:first-of-type {
+          grid-area: previous;
+        }
+
+        mwc-icon-button:last-of-type {
+          grid-area: next;
+        }
+
         ::slotted(awc-responsive-picture) {
           height: 100%;
           scroll-snap-align: start;
@@ -56,42 +106,6 @@ export class Carousel extends LitElement {
           ::slotted(awc-responsive-picture:focus),
           ::slotted(awc-responsive-picture:hover) {
             filter: grayscale(0%);
-          }
-        }
-
-        nav {
-          display: grid;
-          grid-auto-flow: column;
-          grid-column-gap: 80%;
-          height: 30%;
-          left: 0;
-          pointer-events: none;
-          position: absolute;
-          top: 35%;
-          width: 100%;
-          z-index: 2;
-        }
-
-        button {
-          background-color: transparent;
-          border: transparent;
-          color: var(--button-color);
-          cursor: pointer;
-          font-size: var(--button-size, 3rem);
-          pointer-events: auto;
-          text-shadow: 0px 0px 5px var(--button-shadow, white);
-        }
-
-        @media (min-width: 768px) {
-          :host {
-            --button-color: var(--app-tertiary-button-background-color);
-
-            --button-shadow: rgba(255, 255, 255, 0.25);
-            --button-size: 6rem;
-          }
-
-          figure:not(.cover) {
-            --carousel-width: 80vw;
           }
         }
       `
@@ -140,24 +154,24 @@ export class Carousel extends LitElement {
         <slot></slot>
       </figure>
       <nav>
-        <button
+        <mwc-icon-button
           ?disabled="${this._previousButtonDisabled}"
           @click="${this._previousButtonClicked}"
-          class="icon"
+          icon="arrow_left"
           title="scroll to previous item"
           left
         >
           ❬
-        </button>
-        <button
+        </mwc-icon-button>
+        <mwc-icon-button
           ?disabled="${this._nextButtonDisabled}"
           @click="${this._nextButtonClicked}"
-          class="icon"
+          icon="arrow_right"
           title="scroll to next item"
           right
         >
           ❭
-        </button>
+        </mwc-icon-button>
       </nav>
     `;
   }
