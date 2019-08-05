@@ -11,23 +11,23 @@
   "dependencies": {},
   "description": "Web components",
   "devDependencies": {
-    "@types/jest": "^24.0.15",
-    "@types/node": "^12.0.10",
-    "eslint": "^6.0.1",
+    "@types/jest": "^24.0.16",
+    "@types/node": "^12.6.9",
+    "eslint": "^6.1.0",
     "eslint-config-prettier": "^6.0.0",
-    "eslint-plugin-import": "^2.18.0",
+    "eslint-plugin-import": "^2.18.2",
     "eslint-plugin-prettier": "^3.1.0",
     "eslint-plugin-typescript": "^0.14.0",
-    "husky": "^2.7.0",
+    "husky": "^3.0.2",
     "jest": "^24.8.0",
-    "lerna": "^3.15.0",
-    "lint-staged": "^8.2.1",
+    "lerna": "^3.16.4",
+    "lint-staged": "^9.2.1",
     "ts-jest": "^24.0.2",
     "tslint": "^5.18.0",
     "tslint-config-prettier": "^1.18.0",
     "tslint-eslint-rules": "^5.4.0",
-    "typedoc": "^0.14.2",
-    "typescript": "^3.5.2",
+    "typedoc": "^0.15.0",
+    "typescript": "^3.5.3",
     "typescript-eslint-parser": "^22.0.0"
   },
   "homepage": "https://github.com/assemblage/web-components#readme",
@@ -62,12 +62,8 @@
       "lerna run lint"
     ]
   },
-  "main": "index.js",
   "name": "assemblage",
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/assemblage/web-components.git"
-  },
+  "repository": "assemblage/web-components",
   "scripts": {
     "bootstrap": "lerna bootstrap",
     "compile": "npx tsc -b $(find packages -type d -mindepth 1 -maxdepth 1) --verbose",
