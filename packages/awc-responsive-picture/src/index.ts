@@ -11,9 +11,15 @@ export class ResponsivePicture extends LitElement {
   alt = "";
 
   @property({ type: String })
+  class = "";
+
+  @property({ type: String })
+  position = "";
+
+  @property({ type: String })
   src = "";
 
-  private _sizes = [2560, 1920, 1280, 640, 320];
+  private _sizes = [320, 640, 1280, 1920, 2560];
 
   constructor() {
     super();
@@ -21,11 +27,43 @@ export class ResponsivePicture extends LitElement {
 
   static get styles() {
     return [
-      SharedStyles,
       css`
         :host {
           background-color: var(--mdc-theme-background, white);
+          display: grid;
           position: relative;
+        }
+
+        picture.object-position_bottom img {
+          object-position: bottom center;
+        }
+
+        picture.object-position_left img {
+          object-position: center left;
+        }
+
+        picture.object-position_left_bottom img {
+          object-position: left bottom;
+        }
+
+        picture.object-position_left_top img {
+          object-position: left top;
+        }
+
+        picture.object-position_right img {
+          object-position: right center;
+        }
+
+        picture.object-position_right_bottom img {
+          object-position: right bottom;
+        }
+
+        picture.object-position_right_top img {
+          object-position: right top;
+        }
+
+        picture.object-position_top img {
+          object-position: top center;
         }
 
         picture,
@@ -77,6 +115,30 @@ export class ResponsivePicture extends LitElement {
     ];
   }
 
+  private getMediaQuery(index) {
+    const min = `(min-width: ${this._sizes[index].toString()}px)`;
+
+    if (index + 1 < this._sizes.length) {
+      return `${min} and (max-width: ${this._sizes[index + 1].toString()}px)`;
+    } else {
+      return min;
+    }
+  }
+
+  private getSource(index, type) {
+    return html`
+      <source
+        srcset="
+          ${this.src}-${this._sizes[index].toString()}px@1x.jpeg,
+          ${this.src}-${this._sizes[index].toString()}px@2x.jpeg 2x,
+          ${this.src}-${this._sizes[index].toString()}px@3x.jpeg 3x
+        "
+        media="${this.getMediaQuery(index)}"
+        type="${type}"
+      />
+    `;
+  }
+
   protected firstUpdated() {
     const element = this.shadowRoot!.querySelector("picture");
     const observer = lozad(element);
@@ -89,31 +151,16 @@ export class ResponsivePicture extends LitElement {
         class="lozad"
         data-alt="${this.alt}"
         data-iesrc="${this.src}-1280px@1x.jpeg"
+        data-toggle-class="object-position_${this.position}"
         loading="lazy"
         style="display: flex; min-height: 1rem"
       >
-        ${repeat(
-          this._sizes,
-          size => html`
-            <source
-              srcset="
-                ${this.src}-${size.toString()}px@1x.jpeg,
-                ${this.src}-${size.toString()}px@2x.jpeg 2x,
-                ${this.src}-${size.toString()}px@3x.jpeg 3x
-              "
-              media="(min-width: ${size.toString()}px)"
-              type="image/jpeg"
-            />
-            <source
-              srcset="
-                ${this.src}-${size.toString()}px@1x.webp,
-                ${this.src}-${size.toString()}px@2x.webp  2x,
-                ${this.src}-${size.toString()}px@3x.webp 3x
-              "
-              media="(min-width: ${size.toString()}px)"
-              type="image/webp"
-            />
-          `
+        ${this._sizes.map(
+          (_size, index) =>
+            html`
+              ${this.getSource(index, "image/jpeg")}
+              ${this.getSource(index, "image/webp")}
+            `
         )}
       </picture>
       <span>Image loading&hellip;</span>
