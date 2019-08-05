@@ -1,28 +1,36 @@
 import ValidForm from "@pageclip/valid-form";
-import { customElement, html, LitElement, property } from "lit-element";
+import { customElement, css, html, LitElement, property } from "lit-element";
 import { classMap } from "lit-html/directives/class-map";
 
 // These are the elements needed by this element.
 import { SharedStyles } from "@assemblage/awc-base";
-import "@material/mwc-icon-button";
+import "@material/mwc-button";
 
 @customElement("awc-sign-in-form")
 export class SignInForm extends LitElement {
   static get styles() {
-    return [SharedStyles];
+    return [
+      SharedStyles,
+      css`
+        :host {
+          margin-bottom: 1rem;
+          margin-top: 1rem;
+        }
+      `
+    ];
   }
 
   @property({ type: String })
-  buttonText: string = "Sign in";
+  public buttonText: string = "Sign in";
 
   @property({ type: Boolean })
-  horizontalLabels: boolean = false;
+  public horizontalLabels: boolean = false;
 
   @property({ type: Boolean })
-  showLabels: boolean = false;
+  public showLabels: boolean = false;
 
   @property({ type: Object })
-  user: {
+  public user: {
     authenticated?: boolean;
     email?: string;
     error?: boolean;
@@ -35,7 +43,10 @@ export class SignInForm extends LitElement {
   } = {};
 
   @property({ type: Boolean })
-  verbose: boolean = false;
+  public verbose: boolean = false;
+
+  // @ts-ignore: Property 'shadowRoot' does not exist on type 'SignInForm'.
+  private form: HTMLFormElement;
 
   private _classes: {
     "horizontal-labels": boolean;
@@ -45,13 +56,97 @@ export class SignInForm extends LitElement {
     "show-labels": this.showLabels
   };
 
+  private async addValidation() {
+    await this.updateComplete;
+
+    if (!this.form) {
+      console.error("No form found");
+      return;
+    }
+
+    ValidForm(this.form, {
+      errorPlacement: "after"
+    });
+
+    this.form.addEventListener("submit", this.formSubmitHandler);
+  }
+
+  private async formSubmitHandler(event) {
+    event.preventDefault();
+
+    const valid = this.form.checkValidity();
+
+    console.info("valid", valid);
+
+    const formData = new FormData(this.form);
+
+    // @ts-ignore: Property 'fromEntries' does not exist on type 'ObjectConstructor'.
+    const user = Object.fromEntries(formData);
+
+    // @ts-ignore: Property 'dispatchEvent' does not exist on type 'SignInForm'.
+    this.dispatchEvent(
+      new CustomEvent("sign-in", {
+        detail: user
+      })
+    );
+  }
+
+  private async setupResizeObserver() {
+    // @ts-ignore: Property 'shadowRoot' does not exist on type 'SignInForm'.
+    const style = this.shadowRoot.host.style;
+
+    // @ts-ignore: Cannot find name 'ResizeObserver'.
+    const ro = new ResizeObserver(entries => {
+      for (let entry of entries) {
+        // entry.target.style.borderRadius =
+        //   Math.max(0, 250 - entry.contentRect.width) + "px";
+
+        // const { left, top, width, height } = entry.contentRect;
+
+        // console.log("Element:", entry.target);
+        // console.log(`Element's size: ${width}px x ${height}px`);
+        // console.log(`Element's paddings: ${top}px ; ${left}px`);
+
+        const { width } = entry.contentRect;
+
+        if (this.verbose && width >= 768) {
+          style.setProperty("--grid-template-columns", "1fr 1fr");
+          style.setProperty("--button_grid-column", "1 / span 2");
+        } else {
+          style.setProperty("--grid-template-columns", "1fr");
+          style.setProperty("--button_grid-column", "1");
+        }
+
+        if (width >= 1024) {
+          style.setProperty("--grid-column-gap", "5rem");
+        } else {
+          style.setProperty("--grid-column-gap", "1rem");
+        }
+      }
+    });
+
+    if (!this.form) {
+      console.error("No form found");
+      return;
+    }
+
+    ro.observe(this.form);
+
+    // console.log("ro", ro);
+  }
+
   protected firstUpdated() {
     this._classes = {
       "horizontal-labels": this.horizontalLabels,
       "show-labels": this.showLabels
     };
 
-    this.setupTemplateResult();
+    this.form = this.shadowRoot!.getElementById(
+      "sign-in-form"
+    ) as HTMLFormElement;
+
+    this.addValidation();
+    // this.setupResizeObserver();
   }
 
   protected render() {
@@ -87,6 +182,7 @@ export class SignInForm extends LitElement {
                 class="input-1"
                 id="username"
                 name="username"
+                pattern="[a-zA-Z][a-zA-Z0-9-_.]{1,20}"
                 placeholder="please enter your username"
                 required
                 type="text"
@@ -106,7 +202,11 @@ export class SignInForm extends LitElement {
               />
             </div>
           </fieldset>
-          <button class="cta">${this.buttonText}</button>
+          <mwc-button
+            @click="${this.formSubmitHandler}"
+            label="${this.buttonText}"
+            unelevated
+          ></mwc-button>
         </form>
         ${this.user &&
           this.user.error &&
@@ -120,87 +220,5 @@ export class SignInForm extends LitElement {
           `}
       `;
     }
-  }
-
-  private async addValidation() {
-    await this.updateComplete;
-
-    // @ts-ignore: Property 'shadowRoot' does not exist on type 'SignInForm'.
-    const form: HTMLFormElement = this.shadowRoot.getElementById(
-      "sign-in-form"
-    );
-
-    if (!form) {
-      console.error("No form found");
-      return;
-    }
-
-    ValidForm(form, {
-      errorPlacement: "after"
-    });
-
-    form.addEventListener("submit", async event => {
-      event.preventDefault();
-
-      const valid = form.checkValidity();
-
-      console.info("valid", valid);
-
-      const formData = new FormData(form);
-
-      // @ts-ignore: Property 'fromEntries' does not exist on type 'ObjectConstructor'.
-      const user = Object.fromEntries(formData);
-
-      // @ts-ignore: Property 'dispatchEvent' does not exist on type 'SignInForm'.
-      this.dispatchEvent(
-        new CustomEvent("sign-in", {
-          detail: user
-        })
-      );
-    });
-  }
-
-  private async setupTemplateResult() {
-    await this.addValidation();
-
-    // @ts-ignore: Property 'shadowRoot' does not exist on type 'SignInForm'.
-    const style = this.shadowRoot.host.style;
-
-    // @ts-ignore: Cannot find name 'ResizeObserver'.
-    const ro = new ResizeObserver(entries => {
-      for (let entry of entries) {
-        // entry.target.style.borderRadius =
-        //   Math.max(0, 250 - entry.contentRect.width) + "px";
-
-        // const { left, top, width, height } = entry.contentRect;
-
-        // console.log("Element:", entry.target);
-        // console.log(`Element's size: ${width}px x ${height}px`);
-        // console.log(`Element's paddings: ${top}px ; ${left}px`);
-
-        const { width } = entry.contentRect;
-
-        if (this.verbose && width >= 768) {
-          style.setProperty("--grid-template-columns", "1fr 1fr");
-          style.setProperty("--button_grid-column", "1 / span 2");
-        } else {
-          style.setProperty("--grid-template-columns", "1fr");
-          style.setProperty("--button_grid-column", "1");
-        }
-
-        if (width >= 1024) {
-          style.setProperty("--grid-column-gap", "5rem");
-        } else {
-          style.setProperty("--grid-column-gap", "1rem");
-        }
-      }
-    });
-
-    // @ts-ignore: Property 'shadowRoot' does not exist on type 'SignInForm'.
-    const formSelector = this.shadowRoot.getElementById("sign-in-form");
-
-    ro.observe(formSelector);
-
-    // console.log("ro", ro);
   }
 }

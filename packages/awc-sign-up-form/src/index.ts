@@ -1,27 +1,36 @@
 import ValidForm from "@pageclip/valid-form";
+import { customElement, css, html, LitElement, property } from "lit-element";
 import { classMap } from "lit-html/directives/class-map";
-import { customElement, html, LitElement, property } from "lit-element";
 
-// These are the shared styles needed by this element.
+// These are the elements needed by this element.
 import { SharedStyles } from "@assemblage/awc-base";
+import "@material/mwc-button";
 
 @customElement("awc-sign-up-form")
-export class SignUpForn extends LitElement {
+export class SignUpForm extends LitElement {
   static get styles() {
-    return [SharedStyles];
+    return [
+      SharedStyles,
+      css`
+        :host {
+          margin-bottom: 1rem;
+          margin-top: 1rem;
+        }
+      `
+    ];
   }
 
   @property({ type: String })
-  buttonText: string = "Sign up";
+  public buttonText: string = "Sign up";
 
   @property({ type: Boolean })
-  horizontalLabels: boolean = false;
+  public horizontalLabels: boolean = false;
 
   @property({ type: Boolean })
-  showLabels: boolean = false;
+  public showLabels: boolean = false;
 
   @property({ type: Object })
-  user: {
+  public user: {
     authenticated?: boolean;
     email?: string;
     error?: boolean;
@@ -34,7 +43,10 @@ export class SignUpForn extends LitElement {
   } = {};
 
   @property({ type: Boolean })
-  private verbose: boolean = false;
+  public verbose: boolean = false;
+
+  // @ts-ignore: Property 'shadowRoot' does not exist on type 'SignUpForm'.
+  private form: HTMLFormElement;
 
   private _classes: {
     "horizontal-labels": boolean;
@@ -44,13 +56,97 @@ export class SignUpForn extends LitElement {
     "show-labels": this.showLabels
   };
 
+  private async addValidation() {
+    await this.updateComplete;
+
+    if (!this.form) {
+      console.error("No form found");
+      return;
+    }
+
+    ValidForm(this.form, {
+      errorPlacement: "after"
+    });
+
+    this.form.addEventListener("submit", this.formSubmitHandler);
+  }
+
+  private async formSubmitHandler(event) {
+    event.preventDefault();
+
+    const valid = this.form.checkValidity();
+
+    console.info("valid", valid);
+
+    const formData = new FormData(this.form);
+
+    // @ts-ignore: Property 'fromEntries' does not exist on type 'ObjectConstructor'.
+    const user = Object.fromEntries(formData);
+
+    // @ts-ignore: Property 'dispatchEvent' does not exist on type 'SignUpForm'.
+    this.dispatchEvent(
+      new CustomEvent("sign-up", {
+        detail: user
+      })
+    );
+  }
+
+  private async setupResizeObserver() {
+    // @ts-ignore: Property 'shadowRoot' does not exist on type 'SignUpForm'.
+    const style = this.shadowRoot.host.style;
+
+    // @ts-ignore: Cannot find name 'ResizeObserver'.
+    const ro = new ResizeObserver(entries => {
+      for (let entry of entries) {
+        // entry.target.style.borderRadius =
+        //   Math.max(0, 250 - entry.contentRect.width) + "px";
+
+        // const { left, top, width, height } = entry.contentRect;
+
+        // console.log("Element:", entry.target);
+        // console.log(`Element's size: ${width}px x ${height}px`);
+        // console.log(`Element's paddings: ${top}px ; ${left}px`);
+
+        const { width } = entry.contentRect;
+
+        if (this.verbose && width >= 768) {
+          style.setProperty("--grid-template-columns", "1fr 1fr");
+          style.setProperty("--button_grid-column", "1 / span 2");
+        } else {
+          style.setProperty("--grid-template-columns", "1fr");
+          style.setProperty("--button_grid-column", "1");
+        }
+
+        if (width >= 1024) {
+          style.setProperty("--grid-column-gap", "5rem");
+        } else {
+          style.setProperty("--grid-column-gap", "1rem");
+        }
+      }
+    });
+
+    if (!this.form) {
+      console.error("No form found");
+      return;
+    }
+
+    ro.observe(this.form);
+
+    // console.log("ro", ro);
+  }
+
   protected firstUpdated() {
     this._classes = {
       "horizontal-labels": this.horizontalLabels,
       "show-labels": this.showLabels
     };
 
-    this.setupTemplateResult();
+    this.form = this.shadowRoot!.getElementById(
+      "sign-up-form"
+    ) as HTMLFormElement;
+
+    this.addValidation();
+    // this.setupResizeObserver();
   }
 
   protected render() {
@@ -66,7 +162,7 @@ export class SignUpForn extends LitElement {
       this.user.username
     ) {
       return html`
-        Welcome ${this.user.username}
+        <p>Welcome ${this.user.username}</p>
       `;
     } else {
       return html`
@@ -303,12 +399,16 @@ export class SignUpForn extends LitElement {
                 type="email"
               />
             </div>
+
             <div class="form-group">
               <label class="label-1" for="username">username</label>
               <input
+                autocomplete="username"
+                aria-label="username"
                 class="input-1"
                 id="username"
                 name="username"
+                pattern="[a-zA-Z][a-zA-Z0-9-_.]{1,20}"
                 placeholder="please enter your username"
                 required
                 type="text"
@@ -317,6 +417,8 @@ export class SignUpForn extends LitElement {
             <div class="form-group">
               <label class="label-1" for="password">password</label>
               <input
+                autocomplete="password"
+                aria-label="password"
                 class="input-1"
                 id="password"
                 name="password"
@@ -337,7 +439,11 @@ export class SignUpForn extends LitElement {
             <a href="/privacy-statement">Privacy Statement</a>. We’ll
             occasionally send you account related emails.
           </p>
-          <button class="cta">${this.buttonText}</button>
+          <mwc-button
+            @click="${this.formSubmitHandler}"
+            label="${this.buttonText}"
+            unelevated
+          ></mwc-button>
         </form>
         <footer>
           <p class="notice">
@@ -364,87 +470,5 @@ export class SignUpForn extends LitElement {
           `}
       `;
     }
-  }
-
-  private async addValidation() {
-    await this.updateComplete;
-
-    // @ts-ignore: Property 'shadowRoot' does not exist on type 'SignUpForn'.
-    const form: HTMLFormElement = this.shadowRoot.getElementById(
-      "sign-up-form"
-    );
-
-    if (!form) {
-      console.error("No form found");
-      return;
-    }
-
-    ValidForm(form, {
-      errorPlacement: "after"
-    });
-
-    form.addEventListener("submit", async event => {
-      event.preventDefault();
-
-      const valid = form.checkValidity();
-
-      console.info("valid", valid);
-
-      const formData = new FormData(form);
-
-      // @ts-ignore: Property 'fromEntries' does not exist on type 'ObjectConstructor'.
-      const user = Object.fromEntries(formData);
-
-      // @ts-ignore: Property 'dispatchEvent' does not exist on type 'SignInForm'.
-      this.dispatchEvent(
-        new CustomEvent("sign-up", {
-          detail: user
-        })
-      );
-    });
-  }
-
-  private async setupTemplateResult() {
-    await this.addValidation();
-
-    // @ts-ignore: Property 'shadowRoot' does not exist on type 'SignUpForn'.
-    const style = this.shadowRoot.host.style;
-
-    // @ts-ignore: Cannot find name 'ResizeObserver'.
-    const ro = new ResizeObserver(entries => {
-      for (let entry of entries) {
-        // entry.target.style.borderRadius =
-        //   Math.max(0, 250 - entry.contentRect.width) + "px";
-
-        // const { left, top, width, height } = entry.contentRect;
-
-        // console.log("Element:", entry.target);
-        // console.log(`Element's size: ${width}px x ${height}px`);
-        // console.log(`Element's paddings: ${top}px ; ${left}px`);
-
-        const { width } = entry.contentRect;
-
-        if (this.verbose && width >= 768) {
-          style.setProperty("--grid-template-columns", "1fr 1fr");
-          style.setProperty("--button_grid-column", "1 / span 2");
-        } else {
-          style.setProperty("--grid-template-columns", "1fr");
-          style.setProperty("--button_grid-column", "1");
-        }
-
-        if (width >= 1024) {
-          style.setProperty("--grid-column-gap", "5rem");
-        } else {
-          style.setProperty("--grid-column-gap", "1rem");
-        }
-      }
-    });
-
-    // @ts-ignore: Property 'shadowRoot' does not exist on type 'SignUpForn'.
-    const formSelector = this.shadowRoot.getElementById("sign-up-form");
-
-    ro.observe(formSelector);
-
-    // console.log("ro", ro);
   }
 }
