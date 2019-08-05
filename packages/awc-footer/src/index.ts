@@ -4,22 +4,10 @@ import { html, css, customElement, property, LitElement } from "lit-element";
 import { SharedStyles } from "@assemblage/awc-base";
 
 export const FooterStyles = css`
-  /*
-a,
-h1,
-h2,
-h3,
-h4,
-h5,
-h6 {
-  margin-block-end: 0;
-}
-*/
-
   nav {
     display: grid;
-    grid-column-gap: var(--app-footer-grid-column-gap);
-    grid-row-gap: var(--app-footer-grid-row-gap);
+    grid-column-gap: var(--awc-dimension-gap-vertical-section, 1rem);
+    grid-row-gap: var(--awc-dimension-gap-horizontal-section, 1rem);
   }
 
   @media (max-width: 767px) {
@@ -80,30 +68,13 @@ export class Footer extends LitElement {
         :host {
           display: grid;
           font-size: 0.75rem;
-          grid-column-gap: var(--app-footer-grid-column-gap);
+          grid-column-gap: var(--awc-dimension-gap-horizontal-section, 1rem);
           opacity: var(--main-opacity, 1);
-          padding-bottom: var(--app-footer-spacing-vertical);
-          padding-left: var(--app-section-padding);
-          padding-right: var(--app-section-padding);
-          padding-top: var(--app-footer-spacing-vertical);
+          margin-bottom: var(--awc-dimension-margin-vertical-section, 1rem);
+          margin-left: var(--awc-dimension-margin-horizontal-section, 1rem);
+          margin-right: var(--awc-dimension-margin-horizontal-section, 1rem);
+          margin-top: var(--awc-dimension-margin-vertical-section, 1rem);
           place-content: stretch;
-        }
-
-        @media (max-width: 767px) {
-          :host(.dark-theme) {
-            background-color: var(--mdc-theme-primary);
-          }
-
-          :host(.dark-theme) a,
-          :host(.dark-theme) h1,
-          :host(.dark-theme) h2,
-          :host(.dark-theme) h3,
-          :host(.dark-theme) h4,
-          :host(.dark-theme) h5,
-          :host(.dark-theme) h6 {
-            color: var(--app-text-color-light);
-            margin-block-end: 0;
-          }
         }
 
         @media (min-width: 1440px) {

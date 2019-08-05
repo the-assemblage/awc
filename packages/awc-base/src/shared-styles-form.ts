@@ -173,7 +173,7 @@ export const SharedStylesForm = css`
   }
 
   legend {
-    border-bottom-color: var(--app-color-secondary);
+    border-bottom-color: var(--mdc-theme-secondary, grey);
     border-bottom-style: solid;
     border-bottom-width: 1px;
     font-size: 1.5rem;

@@ -17,25 +17,12 @@ export const SharedStyles = [
   SharedStylesText,
   css`
     /*
-   * Breakpoints: 768px, 1024px, 1440px, 1920px  
+   * Breakpoints: 768px, 1024px, 1440px, 1920px
    */
 
     [loading] {
       color: blue;
       place-self: center;
-    }
-
-    .circle {
-      display: block;
-      width: 64px;
-      height: 64px;
-      margin: 0 auto;
-      text-align: center;
-      border-radius: 50%;
-      background: var(--app-color-primary);
-      color: var(--app-text-color-light);
-      font-size: 30px;
-      line-height: 64px;
     }
   `
 ];

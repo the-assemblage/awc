@@ -19,8 +19,8 @@ export class SocialLinks extends LitElement {
       SharedStyles,
       css`
         :host {
-          background-color: var(--app-primary-banner-background-color);
-          color: var(--app-primary-banner-text-color);
+          background-color: var(--mdc-theme-primary, darkgrey);
+          color: var(--mdc-theme-text-primary-on-dark, white);
           display: grid;
           grid-auto-flow: column;
           grid-gap: 1.5rem;
@@ -49,7 +49,7 @@ export class SocialLinks extends LitElement {
         }
 
         svg {
-          fill: var(--app-color-secondary);
+          fill: var(--mdc-theme-text-icon-on-dark, white);
           height: 2rem;
           width: 2rem;
         }

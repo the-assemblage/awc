@@ -16,8 +16,8 @@ export class Copyright extends LitElement {
       SharedStyles,
       css`
         :host {
-          background-color: var(--app-color-tertiary);
-          color: var(--app-footer-text-color);
+          background-color: var(--mdc-theme-secondary, grey);
+          color: var(--mdc-theme-on-primary, white);
           display: grid;
           height: 4rem;
           place-content: center;

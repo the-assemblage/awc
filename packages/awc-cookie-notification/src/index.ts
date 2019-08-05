@@ -13,15 +13,15 @@ export class CookieNotification extends LitElement {
       SharedStyles,
       css`
         :host {
-          background-color: var(--app-overlay-primary-background-color);
+          background-color: var(--mdc-theme-overlay, rgba(0, 0, 0, 0.75));
           bottom: 0;
-          color: var(--app-primary-overlay-text-color);
+          color: var(--mdc-theme-text-primary-on-dark, white);
           display: grid;
           grid-auto-flow: column;
           grid-template-areas: "start middle end";
           grid-template-columns: 1fr 4fr 1fr;
           left: 0;
-          min-height: var(--app-cookie-notification-height);
+          min-height: var(--awc-dimension-height-cookie-notification, 6rem);
           padding: 1rem;
           place-content: center;
           place-items: center;
@@ -37,7 +37,7 @@ export class CookieNotification extends LitElement {
 
         a,
         span {
-          color: var(--app-text-color-light);
+          color: var(--mdc-theme-on-primary, white);
         }
 
         a {
@@ -45,7 +45,7 @@ export class CookieNotification extends LitElement {
         }
 
         mwc-icon-button {
-          color: var(--app-text-color-light);
+          color: var(--mdc-theme-on-primary, white);
           grid-area: end;
           justify-self: end;
         }

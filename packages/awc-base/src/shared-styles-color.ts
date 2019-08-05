@@ -5,7 +5,7 @@ export const SharedStylesColor = css`
    * Elements
    */
   a {
-    color: var(--app-link-color);
+    color: var(--mdc-theme-text-primary-on-background, black);
   }
 
   /*
@@ -15,13 +15,14 @@ export const SharedStylesColor = css`
   input,
   select,
   textarea {
-    background-color: white;
-    border-color: black;
+    background-color: var(--mdc-theme-background, white);
+    color: var(--mdc-theme-text-primary-on-background, black);
+    border-color: var(--mdc-theme-on-surface, black);
   }
 
   button.cta {
-    background-color: var(--app-button-primary-background-color);
-    color: var(--app-button-primary-text-color);
+    background-color: var(--mdc-theme-primary, darkgrey);
+    color: var(--mdc-theme-on-primary, white);
   }
 
   /*

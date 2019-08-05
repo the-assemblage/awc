@@ -1,9 +1,13 @@
 import { LitElement, html, css, customElement, property } from "lit-element";
 
+// These are the shared styles needed by this element.
+import { SharedStyles } from "@assemblage/awc-base";
+
 @customElement("awc-snack-bar")
 export class SnackBar extends LitElement {
   static get styles() {
     return [
+      SharedStyles,
       css`
         :host {
           display: block;
@@ -12,8 +16,8 @@ export class SnackBar extends LitElement {
           left: 0;
           right: 0;
           padding: 12px;
-          background-color: var(--app-color-secondary);
-          color: var(--app-text-color-light);
+          background-color: var(--mdc-theme-secondary, grey);
+          color: var(--mdc-theme-on-primary, white);
           box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
           text-align: center;
           will-change: transform;

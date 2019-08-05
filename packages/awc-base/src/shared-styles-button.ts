@@ -20,13 +20,13 @@ export const SharedStylesButton = css`
   button:active,
   button:focus {
     border-color: transparent;
-    color: var(--app-button-selected-background-color);
+    color: var(--awc-button-selected-background-color);
     outline: none;
   }
 
   button:disabled {
     cursor: not-allowed;
-    color: var(--app-button-disabled-background-color);
+    color: var(--awc-button-disabled-background-color);
   }
 
   button.cta {
@@ -37,36 +37,36 @@ export const SharedStylesButton = css`
   }
 
   button.cta:first-of-type {
-    background-color: var(--app-primary-button-background-color);
-    border-color: var(--app-primary-button-border-color);
-    color: var(--app-primary-button-text-color);
+    background-color: var(--awc-primary-button-background-color);
+    border-color: var(--mdc-theme-on-surface, black);
+    color: var(--awc-primary-button-text-color, black);
   }
 
   button.cta:first-of-type svg {
-    fill: var(--app-primary-button-text-color);
+    fill: var(--awc-primary-button-text-color);
   }
 
   button.cta:not(:first-of-type) {
-    background-color: var(--app-secondary-button-background-color);
-    border-color: var(--app-secondary-button-border-color);
-    color: var(--app-secondary-button-text-color);
+    background-color: var(--awc-secondary-button-background-color);
+    border-color: var(--awc-secondary-button-border-color);
+    color: var(--awc-secondary-button-text-color);
   }
 
   button.cta:not(:first-of-type) svg {
-    fill: var(--app-secondary-button-text-color);
+    fill: var(--awc-secondary-button-text-color);
   }
 
   button.cta:active,
   button.cta:focus {
-    background-color: var(--app-button-selected-background-color);
-    border-color: var(--app-button-selected-background-color);
-    color: var(--app-button-selected-color);
+    background-color: var(--awc-button-selected-background-color);
+    border-color: var(--awc-button-selected-background-color);
+    color: var(--awc-button-selected-color);
   }
 
   button.cta:disabled {
-    background-color: var(--app-button-disabled-background-color);
-    border-color: var(--app-button-disabled-background-color);
-    color: var(--app-button-disabled-color);
+    background-color: var(--awc-button-disabled-background-color);
+    border-color: var(--awc-button-disabled-background-color);
+    color: var(--awc-button-disabled-color);
   }
 
   button span {
@@ -81,11 +81,11 @@ export const SharedStylesButton = css`
 
   button.cta:active svg,
   button.cta:focus svg {
-    fill: var(--app-button-selected-background-color);
+    fill: var(--awc-button-selected-background-color);
   }
 
   button.cta:disabled svg {
-    fill: var(--app-button-disabled-color);
+    fill: var(--awc-button-disabled-color);
   }
 
   button.icon {

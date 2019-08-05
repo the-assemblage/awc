@@ -24,7 +24,7 @@ export class ResponsivePicture extends LitElement {
       SharedStyles,
       css`
         :host {
-          background-color: var(--app-color-tertiary);
+          background-color: var(--mdc-theme-background, white);
           position: relative;
         }
 
@@ -46,8 +46,8 @@ export class ResponsivePicture extends LitElement {
         }
 
         span {
-          background-color: var(--app-background-color-primary);
-          color: var(--app-text-color-light);
+          background-color: var(--mdc-theme-background, white);
+          color: var(--mdc-theme-text-primary-on-background, black);
           display: grid;
           font-size: 1rem;
           height: 100%;

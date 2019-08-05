@@ -10,8 +10,8 @@ export class Banner extends LitElement {
       SharedStyles,
       css`
         :host {
-          background-color: var(--mdc-theme-primary, black);
-          color: var(--mdc-theme-text-primary-on-dark, white);
+          background-color: var(--mdc-theme-secondary, black);
+          color: var(--mdc-theme-text-secondary-on-dark, white);
           display: block;
           opacity: 0;
           padding: 1rem;
