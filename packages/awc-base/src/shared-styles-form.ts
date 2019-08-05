@@ -205,8 +205,11 @@ export const SharedStylesForm = css`
       grid-row: 1;
     }
 
-    .form-group > .guidance,
     .form-group > .validation-error {
+      grid-row: 2;
+    }
+
+    .form-group > .guidance {
       grid-row: 3;
     }
 
@@ -285,38 +288,11 @@ export const SharedStylesForm = css`
   }
 
   select option {
-    color: black;
+    color: var(--mdc-theme-text-primary-on-background, black);
   }
 
-  form
-    input:not([type="checkbox"]):not([type="date"]):not([type="radio"]):in-range:not(:placeholder-shown),
-  form
-    textarea:not([type="checkbox"]):not([type="date"]):not([type="radio"]):in-range:not(:placeholder-shown),
-  form
-    select:not([type="checkbox"]):not([type="date"]):not([type="radio"]):in-range:not(:placeholder-shown) {
-    border-color: #008000 !important;
-  }
-
-  form
-    input:invalid:not([type="checkbox"]):not([type="date"]):not([type="radio"]):not(:placeholder-shown),
-  form
-    textarea:invalid:not([type="checkbox"]):not([type="date"]):not([type="radio"]):not(:placeholder-shown),
-  form
-    select:invalid:not([type="checkbox"]):not([type="date"]):not([type="radio"]):not(:placeholder-shown) {
-    border-color: #dc143c !important;
-  }
-
-  form
-    input:out-of-range:not([type="checkbox"]):not([type="date"]):not([type="radio"]):not(:placeholder-shown),
-  form
-    textarea:out-of-range:not([type="checkbox"]):not([type="date"]):not([type="radio"]):not(:placeholder-shown),
-  form
-    select:out-of-range:not([type="checkbox"]):not([type="date"]):not([type="radio"]):not(:placeholder-shown) {
-    border-color: #dc143c !important;
-  }
-
-  form input:optional,
-  form textarea:optional {
+  form input:not(:placeholder-shown):optional,
+  form textarea:not(:placeholder-shown):optional {
     border-style: dashed;
   }
 
@@ -330,28 +306,45 @@ export const SharedStylesForm = css`
     border-color: #000 !important;
   }
 
-  form input:required,
-  form textarea:required {
+  form input:not(:placeholder-shown):required,
+  form textarea:not(:placeholder-shown):required {
     border-style: solid;
   }
 
   form
-    input:not([type="checkbox"]):not([type="date"]):not([type="radio"]):valid:not(:placeholder-shown),
-  form
-    textarea:not([type="checkbox"]):not([type="date"]):not([type="radio"]):valid:not(:placeholder-shown),
-  form
-    select:not([type="checkbox"]):not([type="date"]):not([type="radio"]):valid:not(:placeholder-shown) {
+    input:not(:placeholder-shown):not([type="checkbox"]):not([type="date"]):not([type="radio"]):in-range,
+  form textarea:not(:placeholder-shown):in-range,
+  form select:not(:placeholder-shown):in-range {
     border-color: #008000 !important;
   }
 
-  /*
-  form :valid:not([type="checkbox"]):not([type="date"]):not([type="radio"]):not(:placeholder-shown) + p::before {
+  form
+    input:not(:placeholder-shown):not([type="checkbox"]):not([type="date"]):not([type="radio"]):invalid,
+  form textarea:not(:placeholder-shown):invalid,
+  form select:not(:placeholder-shown):invalid {
+    border-color: #dc143c !important;
+  }
+
+  form
+    input:not(:placeholder-shown):not([type="checkbox"]):not([type="date"]):not([type="radio"]):out-of-range],
+  form
+    textarea:not(:placeholder-shown):out-of-range],
+  form
+    select:not(:placeholder-shown):out-of-range {
+    border-color: #dc143c !important;
+  }
+
+  form
+    input:not(:placeholder-shown):not([type="checkbox"]):not([type="date"]):not([type="radio"]):valid,
+  form textarea:not(:placeholder-shown):valid,
+  form select:not(:placeholder-shown):valid {
+    border-color: #008000 !important;
+  }
+
+  form
+    :valid:not([type="checkbox"]):not([type="date"]):not([type="radio"]):not(:placeholder-shown)
+    + p::before {
     content: "✓";
     display: block;
-  }
-  */
-
-  button[type="submit"] {
-    grid-column: var(--button_grid-column, 1);
   }
 `;
