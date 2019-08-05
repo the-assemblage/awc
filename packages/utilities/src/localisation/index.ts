@@ -16,9 +16,9 @@ const options = {
       }
     ]
   },
-  debug: true,
+  debug: false,
   fallbackLng: "en",
-  ns: ["app"]
+  ns: ["app", "validation"]
 };
 
 const i18nextApp = i18next.createInstance();
