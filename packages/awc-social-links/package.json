@@ -8,8 +8,8 @@
     "url": "https://github.com/the-assemblage/awc/issues"
   },
   "dependencies": {
-    "@the-assemblage/awc-base": "^0.1.1",
-    "@the-assemblage/awc-icons": "^0.1.1",
+    "@the-assemblage/awc-base": "^0.1.2",
+    "@the-assemblage/awc-icons": "^0.1.2",
     "lit-element": "2.2.0"
   },
   "description": "Social links",
@@ -34,5 +34,6 @@
     "tsc": "tsc"
   },
   "types": "dist/index.d.ts",
-  "version": "0.1.1"
+  "version": "0.1.2",
+  "gitHead": "c30498c0a743703a00923eef585ca3a854e126e0"
 }

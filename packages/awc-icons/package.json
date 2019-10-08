@@ -32,5 +32,6 @@
     "tsc": "tsc"
   },
   "types": "dist/index.d.ts",
-  "version": "0.1.1"
+  "version": "0.1.2",
+  "gitHead": "c30498c0a743703a00923eef585ca3a854e126e0"
 }
