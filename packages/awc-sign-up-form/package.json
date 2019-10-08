@@ -8,8 +8,8 @@
     "url": "https://github.com/the-assemblage/awc/issues"
   },
   "dependencies": {
-    "@the-assemblage/awc-base": "0.1.0",
     "@pageclip/valid-form": "1.1.1",
+    "@the-assemblage/awc-base": "^0.1.1",
     "lit-element": "2.2.0"
   },
   "description": "Sign up form",
@@ -20,7 +20,9 @@
   "license": "Apache-2.0",
   "main": "dist/index.js",
   "name": "@the-assemblage/awc-sign-up-form",
-  "publishConfig": { "registry": "https://npm.pkg.github.com/" },
+  "publishConfig": {
+    "registry": "https://npm.pkg.github.com/"
+  },
   "repository": {
     "type": "git",
     "url": "https://github.com/the-assemblage/awc.git"
@@ -32,5 +34,5 @@
     "tsc": "tsc"
   },
   "types": "dist/index.d.ts",
-  "version": "0.1.0"
+  "version": "0.1.1"
 }

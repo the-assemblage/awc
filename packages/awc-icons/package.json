@@ -18,7 +18,9 @@
   "license": "Apache-2.0",
   "main": "dist/index.js",
   "name": "@the-assemblage/awc-icons",
-  "publishConfig": { "registry": "https://npm.pkg.github.com/" },
+  "publishConfig": {
+    "registry": "https://npm.pkg.github.com/"
+  },
   "repository": {
     "type": "git",
     "url": "https://github.com/the-assemblage/awc.git"
@@ -30,5 +32,5 @@
     "tsc": "tsc"
   },
   "types": "dist/index.d.ts",
-  "version": "0.1.0"
+  "version": "0.1.1"
 }

@@ -18,7 +18,9 @@
   "license": "GPL-3.0",
   "main": "dist/index.js",
   "name": "@the-assemblage/awc-base",
-  "publishConfig": { "registry": "https://npm.pkg.github.com/" },
+  "publishConfig": {
+    "registry": "https://npm.pkg.github.com/"
+  },
   "repository": {
     "type": "git",
     "url": "https://github.com/the-assemblage/awc.git"
@@ -29,5 +31,5 @@
     "test:coverage": "jest --coverage"
   },
   "types": "dist/index.d.ts",
-  "version": "0.1.0"
+  "version": "0.1.1"
 }
