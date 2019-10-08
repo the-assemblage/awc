@@ -19,9 +19,7 @@
   "license": "GPL-3.0",
   "main": "dist/index.js",
   "name": "@the-assemblage/awc-banner",
-  "publishConfig": {
-    "access": "public"
-  },
+  "publishConfig": { "registry": "https://npm.pkg.github.com/" },
   "repository": {
     "type": "git",
     "url": "https://github.com/the-assemblage/awc.git"

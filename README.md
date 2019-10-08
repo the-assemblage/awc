@@ -47,7 +47,7 @@ or
 
 ### Compile a component
 
-`npx lerna run build --scope=@the-assemblage<PACKAGE>`
+`npx lerna run build --scope=@the-assemblage/<PACKAGE>`
 
 or
 
@@ -57,6 +57,6 @@ or
 
 As lerna run first calls `npm run`, it is necessary to pass -- twice in order to pass arguments to the npm script itself. This is necessary to preserve the ability to pass flags to npm or yarn.
 
-`npx lerna run build --scope=@the-assemblage<PACKAGE> -- -- --foo=bar`
+`npx lerna run build --scope=@the-assemblage/<PACKAGE> -- -- --foo=bar`
 
 This doesn't work as Docker cannot traverse symlinks, which is how the various Niveau modules are included as dependencies.
