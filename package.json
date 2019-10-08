@@ -34,7 +34,7 @@
   "husky": {
     "hooks": {
       "post-commit": "lint-staged",
-      "pre-push": "lerna run test"
+      "pre-push": "npm run-script test"
     }
   },
   "keywords": [
@@ -59,7 +59,8 @@
     "start": "npm run-script bootstrap && npm run-script link && npm run-script compile:watch",
     "link": "lerna link",
     "publish": "lerna run compile && lerna publish",
-    "test": "jest --passWithNoTests"
+    "test_old": "jest --passWithNoTests",
+    "test": "lerna run test -- -- --passWithNoTests"
   },
   "version": "0.1.0"
 }
