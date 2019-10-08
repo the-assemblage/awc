@@ -5,7 +5,7 @@
     "url": "https://www.primeordinal.com"
   },
   "bugs": {
-    "url": "https://github.com/assemblage/web-components/issues"
+    "url": "https://github.com/the-assemblage/awc/issues"
   },
   "dependencies": {
     "lit-element": "2.2.0"
@@ -14,7 +14,7 @@
   "devDependencies": {
     "@types/node": "^12.0.10"
   },
-  "homepage": "https://github.com/assemblage/web-components/tree/master/components/awc-base#readme",
+  "homepage": "https://github.com/the-assemblage/awc/tree/master/components/awc-base#readme",
   "license": "GPL-3.0",
   "main": "dist/index.js",
   "name": "@assemblage/awc-base",
@@ -23,7 +23,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/assemblage/web-components.git"
+    "url": "https://github.com/the-assemblage/awc.git"
   },
   "scripts": {
     "build": "tsc",

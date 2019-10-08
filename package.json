@@ -6,7 +6,7 @@
     "packageManager": "npm"
   },
   "bugs": {
-    "url": "https://github.com/assemblage/web-components/issues"
+    "url": "https://github.com/the-assemblage/awc/issues"
   },
   "dependencies": {},
   "description": "Web components",
@@ -30,7 +30,7 @@
     "typescript": "^3.6.3",
     "typescript-eslint-parser": "^22.0.0"
   },
-  "homepage": "https://github.com/assemblage/web-components#readme",
+  "homepage": "https://github.com/the-assemblage/awc#readme",
   "husky": {
     "hooks": {
       "post-commit": "lint-staged",
@@ -51,7 +51,7 @@
     ]
   },
   "name": "assemblage",
-  "repository": "assemblage/web-components",
+  "repository": "the-assemblage/awc",
   "scripts": {
     "bootstrap": "lerna bootstrap",
     "compile": "npx tsc -b $(find packages -type d -mindepth 1 -maxdepth 1) --verbose",
