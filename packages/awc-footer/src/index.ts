@@ -1,7 +1,7 @@
 import { html, css, customElement, property, LitElement } from "lit-element";
 
 // These are the shared styles needed by this element.
-import { SharedStyles } from "@assemblage/awc-base";
+import { SharedStyles } from "@the-assemblage/awc-base";
 
 export const FooterStyles = css`
   nav {

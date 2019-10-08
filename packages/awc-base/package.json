@@ -17,7 +17,7 @@
   "homepage": "https://github.com/the-assemblage/awc/tree/master/components/awc-base#readme",
   "license": "GPL-3.0",
   "main": "dist/index.js",
-  "name": "@assemblage/awc-base",
+  "name": "@the-assemblage/awc-base",
   "publishConfig": {
     "access": "public"
   },

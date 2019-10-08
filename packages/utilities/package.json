@@ -21,7 +21,7 @@
   "homepage": "https://github.com/the-assemblage/awc/tree/master/components/utilities#readme",
   "license": "GPL-3.0",
   "main": "dist/index.js",
-  "name": "@assemblage/utilities",
+  "name": "@the-assemblage/utilities",
   "publishConfig": {
     "access": "public"
   },

@@ -1,7 +1,7 @@
 import { LitElement, html, css, customElement, property } from "lit-element";
 
 // These are the shared styles needed by this element.
-import { SharedStyles } from "@assemblage/awc-base";
+import { SharedStyles } from "@the-assemblage/awc-base";
 
 @customElement("awc-checkout")
 export class Checkout extends LitElement {

@@ -3,7 +3,7 @@ import { of, from } from "rxjs";
 import { catchError, switchMap } from "rxjs/operators";
 // import { store } from "../redux/store";
 
-import { getCookies, getErrorResponse } from "@assemblage/utilities";
+import { getCookies, getErrorResponse } from "@the-assemblage/utilities";
 
 const cookies = getCookies();
 

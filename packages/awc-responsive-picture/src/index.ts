@@ -3,7 +3,7 @@ import lozad from "lozad";
 import { repeat } from "lit-html/directives/repeat";
 
 // These are the shared styles needed by this element.
-import { SharedStyles } from "@assemblage/awc-base";
+import { SharedStyles } from "@the-assemblage/awc-base";
 
 @customElement("awc-responsive-picture")
 export class ResponsivePicture extends LitElement {

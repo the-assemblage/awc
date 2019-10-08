@@ -17,7 +17,7 @@
   "homepage": "https://github.com/the-assemblage/awc/tree/master/components/awc-icons#readme",
   "license": "Apache-2.0",
   "main": "dist/index.js",
-  "name": "@assemblage/awc-icons",
+  "name": "@the-assemblage/awc-icons",
   "publishConfig": {
     "access": "public"
   },

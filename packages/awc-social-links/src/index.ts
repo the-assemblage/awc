@@ -10,7 +10,7 @@ import {
 } from "./icons";
 
 // These are the shared styles needed by this element.
-import { SharedStyles } from "@assemblage/awc-base";
+import { SharedStyles } from "@the-assemblage/awc-base";
 
 @customElement("awc-social-links")
 export class SocialLinks extends LitElement {

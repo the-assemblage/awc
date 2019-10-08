@@ -3,7 +3,7 @@ import { customElement, css, html, LitElement, property } from "lit-element";
 import { classMap } from "lit-html/directives/class-map";
 
 // These are the elements needed by this element.
-import { SharedStyles } from "@assemblage/awc-base";
+import { SharedStyles } from "@the-assemblage/awc-base";
 import "@material/mwc-button";
 
 @customElement("awc-sign-in-form")

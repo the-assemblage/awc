@@ -1,7 +1,7 @@
 import { css, customElement, html, LitElement, property } from "lit-element";
 
 // These are the shared styles needed by this element.
-import { SharedStyles } from "@assemblage/awc-base";
+import { SharedStyles } from "@the-assemblage/awc-base";
 
 // These are the elements needed by this element.
 import "@material/mwc-icon-button";

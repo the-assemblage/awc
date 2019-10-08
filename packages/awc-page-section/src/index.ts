@@ -9,10 +9,10 @@ import {
 } from "lit-element";
 import { until } from "lit-html/directives/until";
 
-import { getAPIData } from "@assemblage/utilities";
+import { getAPIData } from "@the-assemblage/utilities";
 
 // These are the shared styles needed by this element.
-import { SharedStyles } from "@assemblage/awc-base";
+import { SharedStyles } from "@the-assemblage/awc-base";
 
 export interface IMediaObject {
   alt?: string;

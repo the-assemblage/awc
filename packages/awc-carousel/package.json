@@ -8,7 +8,7 @@
     "url": "https://github.com/the-assemblage/awc/issues"
   },
   "dependencies": {
-    "@assemblage/awc-base": "0.1.0",
+    "@the-assemblage/awc-base": "0.1.0",
     "css-scroll-snap-polyfill": "0.1.2",
     "lit-element": "2.2.0"
   },
@@ -19,7 +19,7 @@
   "homepage": "https://github.com/the-assemblage/awc/tree/master/components/awc-carousel#readme",
   "license": "Apache-2.0",
   "main": "dist/index.js",
-  "name": "@assemblage/awc-carousel",
+  "name": "@the-assemblage/awc-carousel",
   "publishConfig": {
     "access": "public"
   },

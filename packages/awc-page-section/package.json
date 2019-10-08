@@ -8,8 +8,8 @@
     "url": "https://github.com/the-assemblage/awc/issues"
   },
   "dependencies": {
-    "@assemblage/awc-base": "0.1.0",
-    "@assemblage/utilities": "0.1.0",
+    "@the-assemblage/awc-base": "0.1.0",
+    "@the-assemblage/utilities": "0.1.0",
     "lit-element": "2.2.0"
   },
   "description": "Page section",
@@ -19,7 +19,7 @@
   "homepage": "https://github.com/the-assemblage/awc/tree/master/components/awc-page-section#readme",
   "license": "GPL-3.0",
   "main": "dist/index.js",
-  "name": "@assemblage/awc-page-section",
+  "name": "@the-assemblage/awc-page-section",
   "publishConfig": {
     "access": "public"
   },

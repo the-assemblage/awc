@@ -50,7 +50,7 @@
       "lerna run lint"
     ]
   },
-  "name": "assemblage",
+  "name": "awc",
   "repository": "the-assemblage/awc",
   "scripts": {
     "bootstrap": "lerna bootstrap",

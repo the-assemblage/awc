@@ -3,7 +3,7 @@ import { html, css, customElement, property, LitElement } from "lit-element";
 import { classMap } from "lit-html/directives/class-map";
 
 // These are the shared styles needed by this element.
-import { SharedStyles } from "@assemblage/awc-base";
+import { SharedStyles } from "@the-assemblage/awc-base";
 
 // These are the elements needed by this element.
 import "@material/mwc-icon-button";

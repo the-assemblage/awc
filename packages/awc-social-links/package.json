@@ -8,8 +8,8 @@
     "url": "https://github.com/the-assemblage/awc/issues"
   },
   "dependencies": {
-    "@assemblage/awc-base": "0.1.0",
-    "@assemblage/awc-icons": "0.1.0",
+    "@the-assemblage/awc-base": "0.1.0",
+    "@the-assemblage/awc-icons": "0.1.0",
     "lit-element": "2.2.0"
   },
   "description": "Social links",
@@ -19,7 +19,7 @@
   "homepage": "https://github.com/the-assemblage/awc/tree/master/components/awc-social-links#readme",
   "license": "Apache-2.0",
   "main": "dist/index.js",
-  "name": "@assemblage/awc-social-links",
+  "name": "@the-assemblage/awc-social-links",
   "publishConfig": {
     "access": "public"
   },
